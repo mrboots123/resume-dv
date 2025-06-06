@@ -17,19 +17,30 @@ import { SiAuth0 } from "react-icons/si";
 import { FaBootstrap } from "react-icons/fa";
 import { VscAzure } from "react-icons/vsc";
 import { TbBrandCSharp } from "react-icons/tb";
+import Education from "./Education.jsx";
 
 const Journey = () => {
     return (
         <div className={'h-screen w-screen flex flex-col px-4'}>
+
             <Header/>
-            <div className={'text-3xl p-2'}> Diego Vazquez's Resume</div>
+            {/*<div className={'text-3xl p-2'}> Diego Vazquez's Resume</div>*/}
+
+            <Education />
             <div className='flex'>
                 <div className='w-full flex flex-col'>
+                    <div className="flex pb-3">
+                        <h1 className="text-2xl font-bold">Employment</h1>
+                        <span className="flex flex-col w-full p-3">
+  <hr className="border-0 h-px bg-gray-300 w-full"/>
+            </span>
+                    </div>
                     <JobCard time='2022-2025' company={'LightBox'}
                              companyLogo={lbLogo}
                              summary={'Developed user‑friendly interactive maps within React applications, enabling\n' +
                                  '                   clear visualization and\n' +
-                                 '                   exploration of geospatial data.'} title={'Senior Software Engineer'}>
+                                 '                   exploration of geospatial data.'}
+                             title={'Senior Software Engineer'}>
                         <div className='flex items-center'>
                             <FaReact/>
                             <span className='pl-1'> React</span>
@@ -59,7 +70,7 @@ const Journey = () => {
                     <JobCard time='2022-2022' company={'Carvana'}
                              companyLogo={carvanaLogo}
                              summary={'Create internal applications for Carvana collision repair centers. Develop reusable react components and integrate into their Design Language System (DLS).'}
-                             title={'Senior Fullstack Engineer'}>
+                             title={'Fullstack Engineer'}>
                         <div className='flex items-center'>
                             <FaReact/>
                             <span className='pl-1'> React</span>
@@ -136,13 +147,14 @@ const Journey = () => {
                     </JobCard>
 
                     <JobCard time='2016-2018' company={'Syntel'} companyLogo={syntelLogo}
-                             summary={'Maintain and create new components for American Express Merchant portal. Use new wireframes to convert into front end components and integrate into One App'} title={'Full Stack Engineer'}>
+                             summary={'Maintain and create new components for American Express Merchant portal. Use new wireframes to convert into front end components and integrate into One App'}
+                             title={'Full Stack Engineer'}>
                         <div className='flex items-center'>
                             <FaReact/>
                             <span className='pl-1'> React</span>
                         </div>
                         <div className='flex items-center'>
-                            <FaJenkins />
+                            <FaJenkins/>
                             <span className='pl-1'> Jenkins</span>
                         </div>
                         <div className='flex items-center'>
@@ -155,7 +167,7 @@ const Journey = () => {
                         </div>
 
                         <div className='flex items-center'>
-                            <BiLogoSpringBoot />
+                            <BiLogoSpringBoot/>
                             <span className='pl-1'> Spring Boot</span>
                         </div>
                     </JobCard>
@@ -168,7 +180,7 @@ const Journey = () => {
                         />
                         <Marker position={[33.43064858511423, -111.93398957396742]}>
                             <Popup>
-                               Carvana
+                                Carvana
                             </Popup>
                         </Marker>
 
@@ -177,7 +189,6 @@ const Journey = () => {
                                 Syntel
                             </Popup>
                         </Marker>
-
 
 
                         <Marker position={[40.75487784334869, -73.98646902886887]}>
