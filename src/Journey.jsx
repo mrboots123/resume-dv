@@ -166,9 +166,35 @@ const Journey = () => {
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                        <Marker position={[51.505, -0.09]}>
+                        <Marker position={[33.43064858511423, -111.93398957396742]}>
                             <Popup>
-                                A pretty CSS3 popup. <br /> Easily customizable.
+                               Carvana
+                            </Popup>
+                        </Marker>
+
+                        <Marker position={[33.605278033951684, -112.1186636853258]}>
+                            <Popup>
+                                Syntel
+                            </Popup>
+                        </Marker>
+
+
+
+                        <Marker position={[40.75487784334869, -73.98646902886887]}>
+                            <Popup>
+                                Lightbox
+                            </Popup>
+                        </Marker>
+
+                        <Marker position={[33.50264344162594, -111.9320805748817]}>
+                            <Popup>
+                                Digital Airstrike
+                            </Popup>
+                        </Marker>
+
+                        <Marker position={[33.659248, -111.961511]}>
+                            <Popup>
+                                American Express
                             </Popup>
                         </Marker>
                     </MapContainer>
