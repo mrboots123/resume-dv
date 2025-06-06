@@ -7,7 +7,7 @@ import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet'
 import lbLogo from './assets/lightbox.png';
 import carvanaLogo from './assets/carvana.png';
 import americanExpressLogo from './assets/American-Express-Color.png'
-import dasLogo from './assets/daLogo.png';
+import dasLogo from './assets/dalogo.png';
 import syntelLogo from './assets/syntel.png';
 import { FaJenkins } from "react-icons/fa";
 import { FaRedhat } from "react-icons/fa";
