@@ -1,8 +1,19 @@
 
-const JobCard = ({time, title, summary, company, children, companyLogo}) => {
+const JobCard = ({time, title, summary, company, children, office, companyLogo, coordinates, setActivePopup}) => {
    return <div className='flex flex-col h-2/5 w-full p-2' onMouseEnter={() => {
-       console.log('mouse enter')
-   }}>
+
+       setActivePopup({
+           coordinates,
+           companyName: company,
+           officeImg: office,
+       })
+   }}
+               onMouseLeave={() => {
+
+                   setActivePopup(undefined)
+
+               }}
+   >
 
 
        <div className='text-sm font-bold'>
