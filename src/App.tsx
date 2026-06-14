@@ -6,6 +6,7 @@ import { Hero } from './components/Hero'
 import { MapNameplate } from './components/MapNameplate'
 import { TimelineCard } from './components/TimelineCard'
 import { EducationCard } from './components/EducationCard'
+import { Skills } from './components/Skills'
 import { Closing } from './components/Closing'
 import { ResumeModal } from './components/ResumeModal'
 import { useActiveOnScroll } from './hooks/useActiveOnScroll'
@@ -117,7 +118,20 @@ export function App() {
           <div ref={heroSentinel} aria-hidden className="h-px w-full" />
 
           <section className="space-y-6 pb-8">
-            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-400">Experience</h2>
+            <div className="flex flex-wrap items-center justify-between gap-y-2">
+              <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-400">Experience</h2>
+              {/* Chip legend — the highlight on each card's stack is front-end vs the rest. */}
+              <div className="flex items-center gap-3 text-[11px] text-slate-400">
+                <span className="flex items-center gap-1.5">
+                  <span aria-hidden className="h-2.5 w-2.5 rounded-sm border border-sky-400/50 bg-sky-500/15" />
+                  Front-end
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span aria-hidden className="h-2.5 w-2.5 rounded-sm border border-slate-700/60 bg-slate-800/50" />
+                  Back-end &amp; infra
+                </span>
+              </div>
+            </div>
             {orderedStops.map((stop, i) => {
               // Per-card focus from the same continuous signal (no active/inactive
               // branching → avoids flip artifacts). 1 centered, fades with distance.
@@ -130,6 +144,8 @@ export function App() {
               )
             })}
           </section>
+
+          <Skills resume={resume} />
 
           <Closing resume={resume} />
         </main>

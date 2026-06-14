@@ -31,6 +31,10 @@ export interface Job {
   stack: string[]
   /** 2–3 defining tech keys (subset of `stack`) that get emphasized chips. */
   heroStack?: string[]
+  /** Optional self-aware aside — lets the site point at itself as the proof
+   *  (e.g. the LightBox map IS the journey map you're scrolling). Rendered as
+   *  a quiet callout on the card, not a deliverable. */
+  selfRef?: string
   /** Files in /public/assets */
   logo: string
 }
@@ -87,7 +91,7 @@ export const resume: Resume = {
   tagline: 'I make web apps feel instant. Front-end specialist, full-stack capable.',
   experienceLine: 'From American Express card platforms to LightBox’s mapping engine — {years} years across the stack.',
   coreStack: ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'Java'],
-  location: 'Phoenix, AZ',
+  location: 'Phoenix, AZ · Open to remote',
   contacts: [
     { label: 'Email', href: 'mailto:vazquez.diego59@gmail.com', display: 'vazquez.diego59@gmail.com', icon: 'email' },
     { label: 'GitHub', href: 'https://github.com/mrboots123', display: 'github.com/mrboots123', icon: 'github' },
@@ -112,7 +116,7 @@ export const resume: Resume = {
       bullets: [
         'Built and maintained front-end components in React, converting wireframes into features integrated into the One App ecosystem.',
         'Developed and maintained Java / Spring Boot services behind the merchant portal, exposing REST APIs consumed by the React front end.',
-        'Shipped through a Jenkins CI/CD pipeline onto Red Hat infrastructure for reliable, repeatable releases.',
+        'Shipped through a Jenkins CI/CD pipeline onto Red Hat infrastructure.',
       ],
       scope: [],
       stack: ['react', 'jenkins', 'redhat', 'java', 'spring'],
@@ -130,9 +134,9 @@ export const resume: Resume = {
       coords: [33.50264344162594, -111.9320805748817],
       headline: 'Flagship analytics application', // TODO: replace with a real named project/metric
       bullets: [
-        'Built responsive UI in React on a modern .NET (C#) stack to help analysts serve business clients.',
+        'Built the responsive React UI on a .NET (C#) backend for the analyst-facing application.',
         'Implemented authentication and authorization with Auth0, gating analyst access to sensitive client data.',
-        'Delivered features on Azure-hosted services and moved the UI toward TypeScript for safer, more maintainable code.',
+        'Delivered features on Azure-hosted services and migrated the UI to TypeScript.',
       ],
       scope: [],
       stack: ['react', 'bootstrap', 'azure', 'csharp', 'auth0', 'typescript'],
@@ -185,15 +189,18 @@ export const resume: Resume = {
       startYear: 2022.5,
       city: 'New York, NY',
       coords: [40.75487784334869, -73.98646902886887],
-      headline: 'Interactive geospatial maps at scale', // TODO: replace with a real named project/metric
+      headline: 'Interactive geospatial maps', // TODO: name the real product/client
       bullets: [
-        'Built user-friendly maps with Leaflet inside React applications, giving clients clear visualization and exploration of complex geospatial data.',
-        'Designed PostgreSQL-backed Node.js services to serve and query large geospatial datasets efficiently.',
-        'Styled a responsive, accessible mapping interface with Tailwind and TypeScript for a polished client experience.',
+        'Built the Leaflet mapping layer in React for exploring large geospatial datasets.',
+        'Designed PostgreSQL-backed Node.js services to query large geospatial datasets.',
+        'Built the responsive, accessible map interface with Tailwind and TypeScript.',
       ],
       scope: [],
       stack: ['react', 'tailwind', 'leaflet', 'node', 'typescript', 'postgres'],
       heroStack: ['react', 'tailwind', 'leaflet'],
+      // Honest nod: this site's map shares the React + Leaflet craft from this
+      // role — without claiming it IS the LightBox product.
+      selfRef: 'Same React + Leaflet craft behind the map you’re scrolling.',
       logo: 'lightbox.png',
     },
     {

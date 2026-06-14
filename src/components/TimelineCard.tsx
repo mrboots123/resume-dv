@@ -43,11 +43,11 @@ export const TimelineCard = memo(function TimelineCard({
   // opacity focus stays since a cross-fade isn't motion.
   const reduce = useReducedMotion()
 
-  // One flat row — defining (hero) techs first, the rest after. Stable sort
-  // keeps each group's original order.
-  const stack = [...job.stack].sort(
-    (a, b) => (job.heroStack?.includes(a) ? 0 : 1) - (job.heroStack?.includes(b) ? 0 : 1),
-  )
+  // One flat row — front-end techs lit and listed first, back-end & infra grayed
+  // after. Color carries the pitch: "front-end specialist, full-stack capable."
+  // Stable sort keeps each group's original order.
+  const isFrontend = (key: string) => TECH[key]?.category === 'Frontend'
+  const stack = [...job.stack].sort((a, b) => (isFrontend(a) ? 0 : 1) - (isFrontend(b) ? 0 : 1))
 
   return (
     <motion.article
@@ -111,6 +111,12 @@ export const TimelineCard = memo(function TimelineCard({
             </li>
           ))}
         </ul>
+        {job.selfRef && (
+          <p className="mt-3 flex gap-2 text-sm italic leading-relaxed text-sky-300/90">
+            <span aria-hidden className="not-italic text-sky-400/80">↳</span>
+            <span>{job.selfRef}</span>
+          </p>
+        )}
       </div>
 
       {/* Stack — one flat row, defining techs emphasized. */}
@@ -119,12 +125,11 @@ export const TimelineCard = memo(function TimelineCard({
           const tech = TECH[key]
           if (!tech) return null
           const { Icon, label } = tech
-          const isHero = job.heroStack?.includes(key)
           return (
             <li
               key={key}
               className={
-                isHero
+                isFrontend(key)
                   ? 'flex items-center gap-1.5 rounded-md border border-sky-400/50 bg-sky-500/15 px-2.5 py-1 text-xs font-semibold text-sky-200'
                   : 'flex items-center gap-1.5 rounded-md border border-slate-700/60 bg-slate-800/50 px-2 py-1 text-xs text-slate-400'
               }
