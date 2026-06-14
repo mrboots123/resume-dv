@@ -9,7 +9,8 @@ import { asset } from '../data/resume'
  * sub-line) so it reads as polished, not unfinished — but stays distinct: an
  * "Origin" eyebrow + graduation-cap mark instead of an index number, and no
  * stack chips or deliverables. It registers with the scroll tracker (so the map
- * can mark the origin) and dims with `focus` like every other stop.
+ * can mark the origin) and dims with `focus` like every other stop. The
+ * "Alma mater" eyebrow + graduation-cap mark keep it distinct from the jobs.
  * `index`/`active` are accepted (App spreads them to every stop) but unused.
  */
 export const EducationCard = memo(function EducationCard({
@@ -30,7 +31,7 @@ export const EducationCard = memo(function EducationCard({
             this to the same timeline while the label marks it as the start. */}
         <div className="flex items-center gap-3">
           <span className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full bg-sky-400 ring-4 ring-sky-400/20" />
-          <span className="text-xs font-semibold uppercase tracking-widest text-sky-400">The origin</span>
+          <span className="text-xs font-semibold uppercase tracking-widest text-sky-400">Alma mater</span>
           <span className="ml-auto text-xs text-slate-400">{edu.city}</span>
         </div>
 
