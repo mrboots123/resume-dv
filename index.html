@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0ea5e9" />
+
+    <!-- Warm up the map tile connection before Leaflet asks for it. -->
+    <link rel="preconnect" href="https://a.basemaps.cartocdn.com" crossorigin />
+    <link rel="preconnect" href="https://b.basemaps.cartocdn.com" crossorigin />
+    <link rel="dns-prefetch" href="https://basemaps.cartocdn.com" />
+
     <title>Diego Vazquez — Senior Front-End Engineer</title>
     <meta
       name="description"
@@ -32,6 +40,38 @@
       content="A decade across fintech and geospatial — Amex, Carvana, LightBox, Plexus. An interactive career journey, mapped. Open to remote."
     />
     <meta name="twitter:image" content="https://diegovazquez.org/og.png" />
+
+    <!-- Structured data — lets Google/AI resolve the page to a person entity,
+         so searching "Diego Vazquez front-end engineer" surfaces this site. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Diego Vazquez",
+        "jobTitle": "Senior Front-End Engineer",
+        "url": "https://diegovazquez.org/",
+        "email": "mailto:vazquez.diego59@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Phoenix",
+          "addressRegion": "AZ",
+          "addressCountry": "US"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Arizona State University"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Plexus Worldwide"
+        },
+        "knowsAbout": ["TypeScript", "React", "Next.js", "Node.js", "PostgreSQL", "Leaflet"],
+        "sameAs": [
+          "https://github.com/mrboots123",
+          "https://www.linkedin.com/in/diego-vazquez-81b60211a/"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
