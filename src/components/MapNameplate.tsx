@@ -33,10 +33,11 @@ export const MapNameplate = memo(function MapNameplate({
       }`}
     >
       <div className="relative flex h-14 items-center px-4 sm:px-6">
-        {/* Centered identity — absolute so it centers on the viewport regardless
-            of how wide the icon group is. */}
-        <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 text-center leading-tight">
-          <span className="block text-base font-bold tracking-tight text-white sm:text-lg">{name}</span>
+        {/* Identity. On mobile it sits in normal flow on the left (truncating)
+            so it never collides with the contact icons; from sm up it's absolutely
+            centered on the viewport regardless of the icon group's width. */}
+        <div className="pointer-events-none min-w-0 leading-tight sm:absolute sm:left-1/2 sm:-translate-x-1/2 sm:text-center">
+          <span className="block truncate text-base font-bold tracking-tight text-white sm:text-lg">{name}</span>
           <span className="hidden text-[11px] font-medium uppercase tracking-[0.18em] text-sky-400 sm:block">
             {title} <span className="text-slate-500">· Open to remote</span>
           </span>
