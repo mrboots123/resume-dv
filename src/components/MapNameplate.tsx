@@ -38,7 +38,7 @@ export const MapNameplate = memo(function MapNameplate({
         <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 text-center leading-tight">
           <span className="block text-base font-bold tracking-tight text-white sm:text-lg">{name}</span>
           <span className="hidden text-[11px] font-medium uppercase tracking-[0.18em] text-sky-400 sm:block">
-            {title}
+            {title} <span className="text-slate-500">· Open to remote</span>
           </span>
         </div>
 
