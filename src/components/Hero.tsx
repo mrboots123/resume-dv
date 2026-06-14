@@ -77,7 +77,7 @@ export const Hero = memo(function Hero({
           className="inline-flex items-center gap-2 rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/20 outline-none transition hover:bg-sky-400 focus-visible:ring-2 focus-visible:ring-sky-300"
         >
           <FaRegEye className="text-sm" aria-hidden />
-          <span>View résumé</span>
+          <span>View resume</span>
         </button>
       </motion.div>
 
