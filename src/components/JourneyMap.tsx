@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { useReducedMotion } from 'motion/react'
-import { AttributionControl, CircleMarker, MapContainer, Marker, Polyline, TileLayer, useMap } from 'react-leaflet'
+import { AttributionControl, CircleMarker, MapContainer, Marker, Polyline, TileLayer, Tooltip, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import type { Stop } from '../data/resume'
@@ -300,6 +300,14 @@ export function JourneyMap({
 }) {
   const path = useMemo(() => stops.map((s) => s.coords), [stops])
 
+  // The city the camera is currently parked over — captioned below, since the
+  // tiles are deliberately label-free. Crossfades as the active stop changes,
+  // so the cross-country jump (Phoenix → New York) actually lands.
+  const activeCity = useMemo(
+    () => (stops.find((s) => s.id === activeId) ?? stops[0]).city,
+    [stops, activeId],
+  )
+
   // A segment is part of the drawn career line only when it connects two NEAR
   // JOBS. Far jumps draw no connection (the zoom-out/in carries it), and any
   // segment touching the alma mater stays unconnected — it's the journey's
@@ -379,7 +387,24 @@ export function JourneyMap({
             click: () =>
               document.getElementById(`stop-${stop.id}`)?.scrollIntoView({ behavior: 'instant', block: 'center' }),
           }}
-        />
+        >
+          {/* Hover-to-explore: a recruiter can read any stop without scrolling. */}
+          <Tooltip direction="top" offset={[0, -9]} opacity={1} className="jm-tip">
+            {stop.kind === 'job' ? (
+              <>
+                <span className="jm-tip__title">{stop.company}</span>
+                <span className="jm-tip__sub">{stop.role}</span>
+                <span className="jm-tip__meta">{stop.period} · {stop.city}</span>
+              </>
+            ) : (
+              <>
+                <span className="jm-tip__title">{stop.school}</span>
+                <span className="jm-tip__sub">{stop.degree}</span>
+                <span className="jm-tip__meta">Class of {stop.year} · {stop.city}</span>
+              </>
+            )}
+          </Tooltip>
+        </Marker>
       )),
     [stops, activeId],
   )
@@ -474,6 +499,15 @@ export function JourneyMap({
 
         <ScrollCamera path={path} progress={progress} />
       </MapContainer>
+
+      {/* Place-name caption — names the label-free map. Keyed on the city so it
+          remounts and replays its fade each time the active stop changes. */}
+      <div className="jm-place" key={activeCity}>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="jm-place__pin">
+          <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
+        </svg>
+        <span>{activeCity}</span>
+      </div>
 
       {/* Soft vignette (non-interactive). */}
       <div className="jm-vignette" />
