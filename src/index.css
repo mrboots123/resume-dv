@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* proximity (not mandatory): the page only gently settles on a card when you
+     come to rest near one, instead of forcibly jumping card-to-card on every
+     scroll — so you can scroll slowly and gradually without lurching. */
+  scroll-snap-type: y proximity;
+}
+
+body {
+  background: #020617; /* slate-950 — avoids white flash before React mounts */
+}
+
+/* ---- Leaflet / Journey map ------------------------------------------- */
+
+.jm-root {
+  position: relative;
+}
+
+/* Leaflet's own stylesheet sets `.leaflet-container { background:#ddd }` and is
+   imported after this file, so it would win at equal specificity — the light
+   gray then flashes through wherever tiles aren't loaded yet (most visible
+   during a fast zoom). The descendant selector outranks it so the map area
+   stays dark and untiled gaps read as empty space, never a white box. */
+.jm-root .leaflet-container {
+  background: #020617;
+  font-family: inherit;
+}
+/* Same reason for the tile pane backdrop behind individual tiles. */
+.jm-root .leaflet-pane {
+  background: transparent;
+}
+
+/* Soft inner vignette so the map blends into the dark UI instead of
+   ending in a hard rectangle. */
+.jm-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 400;
+  box-shadow: inset 0 0 120px 30px rgba(2, 6, 23, 0.9);
+}
+
+/* Custom markers (built as Leaflet divIcons in JourneyMap.tsx). */
+.jm-pin-wrap {
+  background: transparent;
+  border: 0;
+}
+
+.jm-pin {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+}
+
+.jm-pin__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background: #64748b;
+  box-shadow: 0 0 0 2px rgba(2, 6, 23, 0.9);
+  transition: background 0.4s, transform 0.4s;
+}
+
+.jm-pin__ring {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+}
+
+/* Alma-mater (origin) marker: a graduation cap instead of a plain dot. */
+.jm-pin__cap {
+  display: grid;
+  place-items: center;
+  color: #94a3b8;
+  filter: drop-shadow(0 0 2px rgba(2, 6, 23, 0.9));
+  transition: color 0.4s, transform 0.4s;
+}
+
+.jm-pin__cap svg {
+  width: 16px;
+  height: 16px;
+}
+
+.jm-pin--edu.jm-pin--active .jm-pin__cap {
+  color: #38bdf8;
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.85));
+}
+
+.jm-pin__label {
+  position: absolute;
+  left: 50%;
+  bottom: 150%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #cbd5e1;
+  background: rgba(2, 6, 23, 0.78);
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  padding: 1px 7px;
+  border-radius: 9999px;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+/* Active marker: glow, grow, reveal the label, pulse a ring. */
+.jm-pin--active .jm-pin__dot {
+  background: #38bdf8;
+  transform: scale(1.25);
+  box-shadow: 0 0 12px 2px rgba(56, 189, 248, 0.8), 0 0 0 2px rgba(2, 6, 23, 0.9);
+}
+
+.jm-pin--active .jm-pin__label {
+  opacity: 1;
+}
+
+.jm-pin--active .jm-pin__ring {
+  border-color: rgba(56, 189, 248, 0.6);
+  animation: jm-pulse 1.8s ease-out infinite;
+}
+
+@keyframes jm-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .jm-pin--active .jm-pin__ring {
+    animation: none;
+  }
+}
+
+/* Flight-path comet head: a soft glow + gentle pulse. Just one tiny node, so a
+   CSS drop-shadow here is cheap (unlike per-frame-redrawn polylines). */
+.jm-comet {
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.9));
+  animation: jm-comet-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes jm-comet-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.65;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jm-comet {
+    animation: none;
+  }
+}
