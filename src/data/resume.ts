@@ -95,7 +95,7 @@ export const resume: Resume = {
   location: 'Phoenix, AZ · Open to remote',
   contacts: [
     { label: 'Email', href: 'mailto:vazquez.diego59@gmail.com', display: 'vazquez.diego59@gmail.com', icon: 'email' },
-    { label: 'GitHub', href: 'https://github.com/mrboots123', display: 'github.com/mrboots123', icon: 'github' },
+    { label: 'GitHub', href: 'https://github.com/mrboots123', display: 'GitHub', icon: 'github' },
     {
       label: 'LinkedIn',
       href: 'https://www.linkedin.com/in/diego-vazquez-81b60211a/',
