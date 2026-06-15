@@ -85,10 +85,11 @@ export interface Resume {
 
 export const resume: Resume = {
   name: 'Diego Vazquez',
-  title: 'Senior Front-End Engineer',
+  title: 'Senior Software Engineer',
   // The hook: lead with the benefit (optimization, in recruiter-readable words),
-  // and the live experience itself is the proof. Range covered by "full-stack capable".
-  tagline: 'I make web apps feel instant. Front-end specialist, full-stack capable.',
+  // and the live experience itself is the proof. "front-end at heart" keeps the
+  // performance/craft pitch while the title stays full-stack/software.
+  tagline: 'I make web apps feel instant. Full-stack engineer, front-end at heart.',
   experienceLine: 'From American Express card platforms to LightBox’s mapping engine — {years} years across the stack.',
   coreStack: ['TypeScript', 'React', 'Node.js', 'PostgreSQL', 'Java'],
   location: 'Phoenix, AZ · Open to remote',
